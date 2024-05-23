@@ -12,10 +12,10 @@ foreach($files as $file)
         $contents = fread($f, filesize($filePath));
         fclose($f);
         $data = explode( ',', $contents );
-        $fileName = basename($filePath);
-        $extension = explode('/',$data[0]);
-        $newFPath = $newPath . '/nome.'. $extension[1];
-        $nf = fopen($newFPath, 'wb');
+        $fileName = basename($file, '.txt');
+        $extension = preg_split('#(/|;)#',$data[0]);
+        $newFPath = $newPath .'/'. $fileName .'.'. $extension[1];
+        $nf = fopen($newFPath, 'w');
         fwrite( $nf, base64_decode( $data[ 1 ] ) );
         fclose($nf);
     }
