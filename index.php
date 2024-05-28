@@ -7,13 +7,9 @@ $dirPath = './files';
         $file = $dirPath . '/' . $filePath;
         if(is_file($file))
         {
-            //Reading Target File
             $targetFileContents = readTargetFile($file);
-            //Exploding file into 'Header[0]' and 'File[1]'
             $targetFileData = explode(',', $targetFileContents);
-            //Decoding targetFileData
             $targetFileData[1] = base64_decode($targetFileData[1]);
-            //Creating newFile
             createNewFile($targetFileData,$file);
         }
     }
